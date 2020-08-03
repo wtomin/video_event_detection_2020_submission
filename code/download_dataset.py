@@ -20,5 +20,5 @@ def getit(lid, subset, subtyp, subout):
                 wget.download(url, out="{}/{}.npy".format(subout, kid))
             except Exception as e:
                 print(n, kid, e)
-getit(ltrai, "train", "i3d_feature", "i3d_features/train")
-getit(lvals, "val", "i3d_feature", "i3d_features/val")
+getit(ltrai, "train", "i3d_feature", "../data/Train/i3d_features")
+getit(lvals, "val", "i3d_feature", "../data/Round1_Test/i3d_features")

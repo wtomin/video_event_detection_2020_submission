@@ -6,8 +6,6 @@ import shutil
 import torch
 import torch.nn as nn
 import torch.nn.parallel
-import torch.backends.cudnn as cudnn
-import pickle
 import torch.optim
 from torch.nn.utils import clip_grad_norm_
 import numpy as np
@@ -15,7 +13,6 @@ from data.dataloader import DataLoader
 from sklearn.metrics import mean_squared_error
 from torch.autograd import Variable as Variable
 from models.MLP_RNN import MLP_RNN
-import pandas as pd
 from sklearn.metrics import f1_score
 from tqdm import tqdm
 from data.video_dataset import Video_Dataset
@@ -98,7 +95,16 @@ def test():
         json.dump(video_outs, outfile, ensure_ascii=False)
 if __name__ == '__main__':
     test()
-
+    # save to submit/
+    json_file = args.output_path
+    import datetime
+    from zipfile import ZipFile
+    zip_file = '../submit/submit_'+datetime.datetime.now().strftime("%Y%m%d_%H%M%S") + '.zip'
+    if not os.path.exists('../submit'):
+        os.makedirs('../submit')
+    with ZipFile(zip_file, 'w') as zipObj:
+        # Add multiple files to the zip
+        zipObj.write(json_file, os.path.basename(json_file))
 
 
 

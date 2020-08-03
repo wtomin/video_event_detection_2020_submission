@@ -8,7 +8,6 @@ import torch.optim
 from torch.nn.utils import clip_grad_norm_
 import numpy as np
 from data.dataloader import DataLoader
-from sklearn.metrics import mean_squared_error
 from torch.autograd import Variable as Variable
 from models.MLP_RNN import MLP_RNN
 from sklearn.metrics import f1_score

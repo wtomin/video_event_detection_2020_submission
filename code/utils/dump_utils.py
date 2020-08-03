@@ -71,9 +71,6 @@ def dump(output_array, label_list, video_id, threshold = 0.5, min_seq_len = 2,
                     "score":  output_array[start:end+1, i_label].sum()/(end+1-start)})
 
     content =  {"{}".format(video_id): output_list}
-    # json_file = os.path.join(output_dir, video_id+".json")
-    # with open(json_file, 'w', encoding='utf-8') as outfile:
-    #     json.dump(content, outfile,ensure_ascii=False)
     return content
 
 

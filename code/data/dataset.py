@@ -72,6 +72,6 @@ class Sequence_Dataset(torch.utils.data.Dataset):
         return sample
 
 if __name__=='__main__':
-    train_dataset, val_dataset = train_val_split(lmdb_file='../i3d_features/train.lmdb', val_ratio = 0.2)
+    train_dataset, val_dataset = train_val_split(lmdb_file='../user_data/Train/i3d_features.lmdb', val_ratio = 0.2)
     sample = train_dataset[13]
     sample = val_dataset[9]
