@@ -1,6 +1,16 @@
 # video_event_detection_2020_submission
 This repository contains the code to be submitted.
 
+# Requirements
+```
+torch                     1.3.0(or higher)
+numpy                     1.16.0
+argparse                  1.1
+tqdm                      4.40.2
+scikit-learn              0.22
+```
+You install all these libraries one by one or run the `install.sh`
+
 # Test Round1
 
 There exists one trained model saved in `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/model/MLP_RNN_best_acc.pth.tar`. 
@@ -12,9 +22,9 @@ Simply run `sh test_example.sh` you can have the prediction json file in `user_d
 
 1. `cd code/` and run `python download_dataset.py`. So that the i3d feature of Training set and Validation set are downloaded to `data/`
 
-2. In 'code/' and 'cd data_balancing_sampler/', run 'python sampler.py'. This file will generate two files: one is 'user_data/Train/i3d_features.lmdb', which saves all training samples into a big binary file. The other one is `user_data/label_list.txt`, which saves all label names in a fixed order.
+2. In `code/` and `cd data_balancing_sampler/`, run `python sampler.py`. This file will generate two files: one is `user_data/Train/i3d_features.lmdb`, which saves all training samples into a big binary file. The other one is `user_data/label_list.txt`, which saves all label names in a fixed order.
 
-3. run 'sh train_example.sh', after the program stopped, in the `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25` folder, there will be one subfolder named 'log' containing the training log, one subfolder named `model` containing all saved models.
+3. run 'sh train_example.sh', after the program stopped, in the `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25` folder, there will be one subfolder named `log` containing the training log, one subfolder named `model` containing all saved models.
 
 # Method
 
