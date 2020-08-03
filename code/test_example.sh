@@ -1,0 +1,1 @@
+python test.py --output_path ../user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/output/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25.json --seq_len 64 --checkpoint ../user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/model/MLP_RNN_best_acc.pth.tar --gpus 0
