@@ -3,19 +3,20 @@ This repository contains the code to be submitted.
 
 # Requirements
 ```
+Python3.5
 torch                     1.3.0(or higher)
 numpy                     1.16.0
 argparse                  1.1
 tqdm                      4.40.2
 scikit-learn              0.22
 ```
-You install all these libraries one by one or run the `install.sh`
+You can install all these libraries one by one or run the `install.sh`
 
 # Test Round1
 
 There exists one trained model saved in `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/model/MLP_RNN_best_acc.pth.tar`. 
 
-Simply run `sh test_example.sh` you can have the prediction json file in `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/output/`. This process will take about five minutes on GTX1080Ti.
+Simply run `sh inference.sh` you can have the prediction json file in `user_data/val_ratio_0.2_threshold_0.5_pos_weight_25.0_epochs_25/output/`. This process will take about five minutes on GTX1080Ti.
 
 
 # Train
