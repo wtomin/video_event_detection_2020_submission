@@ -18,7 +18,7 @@ from data.video_dataset import Video_Dataset
 from utils.dump_utils import dump
 from data_balancing_sampler.sampler import balancing_sampler
 import json
-label_list_file = '../user_data/label_list.txt'
+label_list_file = 'label_list.txt'
 with open(label_list_file, 'r') as output:
     label_list = output.readlines()[0]
     label_list = label_list.strip().split(',')
@@ -63,8 +63,6 @@ def test_on_video(model, dataset):
 def test():
     num_class = 53
     setattr(args, 'num_class', num_class)
-    if not os.path.exists(os.path.dirname(args.output_path)):
-        os.makedirs(os.path.dirname(args.output_path))
     ###########################  Create the classifier ###################       
     model = MLP_RNN(args.hidden_units, args.num_class)  
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
