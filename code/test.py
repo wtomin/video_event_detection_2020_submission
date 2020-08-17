@@ -13,7 +13,6 @@ from data.dataloader import DataLoader
 from sklearn.metrics import mean_squared_error
 from torch.autograd import Variable as Variable
 from models.MLP_RNN import MLP_RNN
-from sklearn.metrics import f1_score
 from tqdm import tqdm
 from data.video_dataset import Video_Dataset
 from utils.dump_utils import dump
@@ -27,9 +26,8 @@ with open(label_list_file, 'r') as output:
 parser = argparse.ArgumentParser(description="PyTorch implementation of video event detection")
 parser.add_argument('--output_path', type=str)
 parser.add_argument('--seq_len', type=int, default=64)
-parser.add_argument('--val_list_file', type=str, default = '../data/Round1_Test/val_video_ids.txt')
 # ========================= Model Configs ==========================
-parser.add_argument('--videos_dir', type=str, default ='../data/Round1_Test/i3d_features/')
+parser.add_argument('--videos_dir', type=str, default ='/tcdata/i3d_feature')
 parser.add_argument('--hidden_units', default=[1024, 256, 256], type=int, nargs="+",
                     help='hidden units set up')
 parser.add_argument('--checkpoint', type=str, help="the checkpoint to be evaluated")
@@ -79,9 +77,9 @@ def test():
     model.load_state_dict(data_dict['state_dict'])
     print("checkpoint loaded from {}th epoch".format(data_dict['epoch']))
 
-    ########################### Load validation dataset videos ###############
-    val_videos = read_video_list(args.val_list_file)
-    val_videos = [s for s in val_videos if len(s)!=0]
+    ########################### Load test round dataset videos ###############
+    val_videos = os.listdir(args.videos_dir)
+    val_videos = [s.split('.')[0] for s in val_videos if len(s)!=0]
     print("{} videos to test.".format(len(val_videos)))
     video_outs = {}
     for video_name in tqdm(val_videos, total = len(val_videos)):
@@ -97,16 +95,8 @@ if __name__ == '__main__':
     test()
     # save to submit/
     json_file = args.output_path
-    import datetime
     from zipfile import ZipFile
-    zip_file = '../submit/submit_'+datetime.datetime.now().strftime("%Y%m%d_%H%M%S") + '.zip'
-    if not os.path.exists('../submit'):
-        os.makedirs('../submit')
+    zip_file = 'result.zip'
     with ZipFile(zip_file, 'w') as zipObj:
         # Add multiple files to the zip
         zipObj.write(json_file, os.path.basename(json_file))
-
-
-
-
-
